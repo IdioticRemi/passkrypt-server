@@ -2,4 +2,4 @@ package adding
 
 import "errors"
 
-var ErrDuplicate = errors.New("account already exists")
+var ErrAccountDuplicate = errors.New("account already exists")

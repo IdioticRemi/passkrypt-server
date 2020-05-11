@@ -22,7 +22,7 @@ func addAccount(s adding.Service) func(w http.ResponseWriter, r *http.Request, _
 		}
 
 		err = s.AddAccount(newAccount)
-		if err == adding.ErrDuplicate {
+		if err == adding.ErrAccountDuplicate {
 			w.WriteHeader(http.StatusConflict)
 			_ = json.NewEncoder(w).Encode("The account already exists.")
 			return

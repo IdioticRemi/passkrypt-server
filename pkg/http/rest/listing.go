@@ -22,7 +22,7 @@ func getAccount(s listing.Service) func(w http.ResponseWriter, r *http.Request, 
 		w.Header().Set("Content-Type", "application/json")
 
 		account, err := s.GetAccount(p.ByName("id"))
-		if err == listing.ErrNotFound {
+		if err == listing.ErrAccountNotFound {
 			w.WriteHeader(http.StatusNotFound)
 			_ = json.NewEncoder(w).Encode("The account does not exist.")
 			return
