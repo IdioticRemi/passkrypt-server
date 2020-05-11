@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/kizuru/passkrypt-server/pkg/unregistering"
 	"log"
 	"net/http"
 
@@ -24,6 +25,7 @@ func main() {
 	var adder adding.Service
 	var logger logging.Service
 	var registerer registering.Service
+	var unregisterer unregistering.Service
 
 	switch storageType {
 	case Memory:
@@ -33,9 +35,10 @@ func main() {
 		adder = adding.NewService(s)
 		logger = logging.NewService(s)
 		registerer = registering.NewService(s)
+		unregisterer = unregistering.NewService(s)
 	}
 
-	router := rest.Handler(lister, adder, logger, registerer)
+	router := rest.Handler(lister, adder, registerer, unregisterer, logger)
 
 	fmt.Println("The passkrypt server is now running: http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", router))

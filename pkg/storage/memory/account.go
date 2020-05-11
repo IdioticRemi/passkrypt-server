@@ -52,7 +52,7 @@ func (s Storage) GetAccount(id string) (listing.Account, error) {
 	return account, listing.ErrAccountNotFound
 }
 
-func (s Storage) GetAllAccounts() []listing.Account {
+func (s Storage) GetAccounts() []listing.Account {
 	var accounts []listing.Account
 
 	for i := range s.accounts {

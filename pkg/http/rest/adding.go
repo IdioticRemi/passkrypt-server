@@ -16,18 +16,16 @@ func addAccount(s adding.Service) func(w http.ResponseWriter, r *http.Request, _
 		var newAccount adding.Account
 		err := decoder.Decode(&newAccount)
 		if err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-			_ = json.NewEncoder(w).Encode("Invalid account object.")
+			http.Error(w, "Invalid account object.", http.StatusBadRequest)
 			return
 		}
 
 		err = s.AddAccount(newAccount)
 		if err == adding.ErrAccountDuplicate {
-			w.WriteHeader(http.StatusConflict)
-			_ = json.NewEncoder(w).Encode("The account already exists.")
+			http.Error(w, "The account already exists.", http.StatusConflict)
 			return
 		}
 
-		_ = json.NewEncoder(w).Encode("New Account added.")
+		_ = json.NewEncoder(w).Encode("New account added.")
 	}
 }

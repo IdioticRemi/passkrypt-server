@@ -1,11 +1,11 @@
-package registering
+package unregistering
 
 type Service interface {
-	RegisterUser(...User) error
+	UnregisterUser(...User) error
 }
 
 type Repository interface {
-	RegisterUser(User) error
+	UnregisterUser(User) error
 }
 
 type service struct {
@@ -16,9 +16,9 @@ func NewService(r Repository) Service {
 	return &service{r}
 }
 
-func (s *service) RegisterUser(users ...User) error {
+func (s *service) UnregisterUser(users ...User) error {
 	for _, user := range users {
-		if err := s.r.RegisterUser(user); err != nil {
+		if err := s.r.UnregisterUser(user); err != nil {
 			return err
 		}
 	}

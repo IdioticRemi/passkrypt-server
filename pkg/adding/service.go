@@ -1,11 +1,11 @@
 package adding
 
-type Service interface {
-	AddAccount(...Account) error
-}
-
 type Repository interface {
 	AddAccount(Account) error
+}
+
+type Service interface {
+	AddAccount(...Account) error
 }
 
 type service struct {
