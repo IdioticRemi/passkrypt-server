@@ -23,7 +23,7 @@ func Handler(list listing.Service, add adding.Service, reg registering.Service, 
 	// Adding
 	router.POST("/accounts", addAccount(add))
 
-	// Auth/Logging
+	// Logging
 
 	// Registering
 	router.POST("/users", registerUser(reg))
